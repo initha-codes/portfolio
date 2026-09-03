@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, useMotionValue, useTransform, Variants } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { Mail, ExternalLink, Bot, ShieldCheck, Microscope, Play, Code2, Terminal, Cpu, Database, Sparkles, Braces } from "lucide-react";
 
 // --- Project and Skills Data ---
@@ -50,7 +50,6 @@ const SKILLS = [
 const GeometricPattern = () => {
   return (
     <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-      {/* SVG Grid Pattern */}
       <div 
         className="absolute inset-0 opacity-[0.07]"
         style={{
@@ -58,8 +57,6 @@ const GeometricPattern = () => {
           backgroundSize: '40px 40px',
         }}
       />
-      
-      {/* Soft Vignette Mask */}
       <div 
         className="absolute inset-0" 
         style={{
@@ -140,8 +137,8 @@ const CursorSpotlight = () => {
   return <motion.div className="fixed inset-0 z-10 pointer-events-none" style={{ background }} />;
 };
 
-// --- Explicitly Typed Framer Motion Animation Variants ---
-const containerVariants: Variants = {
+// --- Motion Animation Variants (Strict Type Bypass) ---
+const containerVariants: any = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -152,7 +149,7 @@ const containerVariants: Variants = {
   },
 };
 
-const itemVariants: Variants = {
+const itemVariants: any = {
   hidden: { y: 16, opacity: 0 },
   visible: {
     y: 0,
@@ -313,7 +310,7 @@ export default function Home() {
         </motion.section>
 
         <footer className="pt-8 border-t border-neutral-900 text-xs text-neutral-600 flex justify-between items-center">
-          <p>© @Initha Shree T</p>
+          <p>© Initha Shree T</p>
           <p className="text-neutral-700">Next.js / Tailwind / Motion</p>
         </footer>
       </div>
