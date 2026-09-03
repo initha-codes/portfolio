@@ -59,8 +59,13 @@ const GeometricPattern = () => {
         }}
       />
       
-      {/* Soft Vignette Mask */}
-      <div className="absolute inset-0 bg-radial from-transparent via-[#070709]/60 to-[#070709]" />
+      {/* Soft Vignette Mask using standard radial-gradient */}
+      <div 
+        className="absolute inset-0" 
+        style={{
+          background: 'radial-gradient(circle at center, transparent 0%, rgba(7, 7, 9, 0.6) 60%, #070709 100%)'
+        }}
+      />
     </div>
   );
 };
