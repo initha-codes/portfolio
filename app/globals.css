@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: #09090b !important;
+  color: #a1a1aa !important;
+  font-family: var(--font-jetbrains-mono), monospace;
+}
