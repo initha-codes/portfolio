@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform, Variants } from "framer-motion";
 import { Mail, ExternalLink, Bot, ShieldCheck, Microscope, Play, Code2, Terminal, Cpu, Database, Sparkles, Braces } from "lucide-react";
 
 // --- Project and Skills Data ---
@@ -59,7 +59,7 @@ const GeometricPattern = () => {
         }}
       />
       
-      {/* Soft Vignette Mask using standard radial-gradient */}
+      {/* Soft Vignette Mask */}
       <div 
         className="absolute inset-0" 
         style={{
@@ -140,8 +140,8 @@ const CursorSpotlight = () => {
   return <motion.div className="fixed inset-0 z-10 pointer-events-none" style={{ background }} />;
 };
 
-// --- Framer Motion Animation Variants ---
-const containerVariants = {
+// --- Explicitly Typed Framer Motion Animation Variants ---
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -152,12 +152,12 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { y: 16, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
-    transition: { type: "spring" as const, stiffness: 100, damping: 20 },
+    transition: { type: "spring", stiffness: 100, damping: 20 },
   },
 };
 
@@ -173,15 +173,11 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen bg-[#070709] text-neutral-200 font-mono px-6 py-20 antialiased selection:bg-neutral-800 selection:text-white">
-      {/* 1. Global Interactivity & Background Layers */}
       <GeometricPattern />
       <FloatingDoodles />
       <CursorSpotlight />
 
-      {/* 2. Main Container */}
       <div className="relative z-20 max-w-3xl mx-auto space-y-20">
-        
-        {/* Header Section */}
         <motion.header
           className="space-y-6"
           initial={{ opacity: 0, y: -15 }}
@@ -201,7 +197,6 @@ export default function Home() {
             A developer focused on full-stack web applications, algorithmic systems, and client-side machine learning integration in financial software.
           </p>
 
-          {/* Social Links */}
           <div className="flex flex-wrap items-center gap-3 pt-1">
             <a 
               href="https://github.com/initha-codes" 
@@ -239,7 +234,6 @@ export default function Home() {
           </div>
         </motion.header>
 
-        {/* Selected Work Section */}
         <motion.section
           className="space-y-6"
           initial="hidden"
@@ -293,7 +287,6 @@ export default function Home() {
           </div>
         </motion.section>
 
-        {/* Stack & Technologies Section */}
         <motion.section
           className="space-y-6"
           initial="hidden"
@@ -319,9 +312,8 @@ export default function Home() {
           </div>
         </motion.section>
 
-        {/* Footer */}
         <footer className="pt-8 border-t border-neutral-900 text-xs text-neutral-600 flex justify-between items-center">
-          <p>© Initha Shree T</p>
+          <p>© @Initha Shree T</p>
           <p className="text-neutral-700">Next.js / Tailwind / Motion</p>
         </footer>
       </div>
