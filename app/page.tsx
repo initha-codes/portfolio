@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { Mail, ExternalLink, Bot, ShieldCheck, Microscope, Play, Code2, Terminal, Cpu, Database, Sparkles, Braces } from "lucide-react";
+import { Mail, ExternalLink, Bot, ShieldCheck, Microscope, Cpu, Code2, Terminal, Database, Sparkles, Braces, Award } from "lucide-react";
 
-// --- Project and Skills Data ---
+// --- Project Data ---
 const PROJECTS = [
   {
     title: "Kisan Mitra",
@@ -31,19 +31,34 @@ const PROJECTS = [
     link: "https://github.com/initha-codes",
   },
   {
-    title: "Anti-UX Challenge",
+    title: "IoT Smart Assistive Cane",
     description:
-      "An interactive web experience exploring dark patterns, intentionally difficult UI paradigms, and accessibility edge cases.",
-    icon: Play,
-    tech: ["React", "Motion", "TailwindCSS", "Figma"],
+      "An assistive hardware system for visually impaired navigation utilizing IR proximity sensors and a customized voice-recordable speaker module for real-time auditory warnings.",
+    icon: Cpu,
+    tech: ["Embedded C++", "IR Sensors", "Voice Playback Module", "IoT"],
     link: "https://github.com/initha-codes",
   },
 ];
 
+// --- Skills Data ---
 const SKILLS = [
   "Next.js", "React", "TypeScript", "Python", "Machine Learning",
   "Node.js", "WASM", "Static Analysis", "C++", "Tailwind CSS",
   "Git", "Docker"
+];
+
+// --- Achievements Data ---
+const ACHIEVEMENTS = [
+  {
+    title: "1st Prize – AI Olympics (Euphoria 2026)",
+    description: "Awarded 1st Prize and a cash prize of ₹10,000 at AI Olympics, the flagship event of Euphoria 2026 organized by Kalasalingam Academy of Research and Education.",
+    date: "2026",
+  },
+  {
+    title: "ACM India Summer School for Women",
+    description: "Attended the prestigious ACM India Summer School on 'Systems for ML' (specifically for women) hosted at VIT Vellore.",
+    date: "June 2026",
+  },
 ];
 
 // --- Sub-Component: Neat Geometric Grid Background ---
@@ -137,7 +152,7 @@ const CursorSpotlight = () => {
   return <motion.div className="fixed inset-0 z-10 pointer-events-none" style={{ background }} />;
 };
 
-// --- Motion Animation Variants (Strict Type Bypass) ---
+// --- Motion Animation Variants ---
 const containerVariants: any = {
   hidden: { opacity: 0 },
   visible: {
@@ -175,6 +190,8 @@ export default function Home() {
       <CursorSpotlight />
 
       <div className="relative z-20 max-w-3xl mx-auto space-y-20">
+        
+        {/* Header Section */}
         <motion.header
           className="space-y-6"
           initial={{ opacity: 0, y: -15 }}
@@ -231,6 +248,7 @@ export default function Home() {
           </div>
         </motion.header>
 
+        {/* Selected Projects Section */}
         <motion.section
           className="space-y-6"
           initial="hidden"
@@ -284,6 +302,7 @@ export default function Home() {
           </div>
         </motion.section>
 
+        {/* Stack & Technologies Section */}
         <motion.section
           className="space-y-6"
           initial="hidden"
@@ -309,6 +328,41 @@ export default function Home() {
           </div>
         </motion.section>
 
+        {/* Achievements Section */}
+        <motion.section
+          className="space-y-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={containerVariants}
+        >
+          <motion.h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-500" variants={itemVariants}>
+            Achievements
+          </motion.h2>
+
+          <div className="grid grid-cols-1 gap-3">
+            {ACHIEVEMENTS.map((item, index) => (
+              <motion.div
+                key={index}
+                className="p-4 rounded-xl border border-neutral-800/80 bg-neutral-900/40 backdrop-blur-sm space-y-1.5"
+                variants={itemVariants}
+              >
+                <div className="flex justify-between items-center gap-2">
+                  <div className="flex items-center gap-2">
+                    <Award size={14} className="text-amber-400/90" />
+                    <h3 className="text-sm font-bold text-neutral-200">{item.title}</h3>
+                  </div>
+                  <span className="text-[10px] font-mono text-neutral-500">{item.date}</span>
+                </div>
+                <p className="text-xs text-neutral-400 leading-relaxed pl-5">
+                  {item.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* Footer */}
         <footer className="pt-8 border-t border-neutral-900 text-xs text-neutral-600 flex justify-between items-center">
           <p>© Initha Shree T</p>
           <p className="text-neutral-700">Next.js / Tailwind / Motion</p>
